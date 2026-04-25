@@ -9,3 +9,7 @@ export function GetClaudeStats(arg1) {
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
+
+export function SelecionarArquivo() {
+  return window['go']['main']['App']['SelecionarArquivo']();
+}

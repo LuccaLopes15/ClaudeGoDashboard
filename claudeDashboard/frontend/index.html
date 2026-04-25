@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>claudeDashboard</title>
+    <title>Claude Dashboard</title>
 </head>
 <body>
-<div id="app"></div>
-<script src="./src/main.ts" type="module"></script>
+<div id="app">
+    <div class="toolbar">
+        <div class="file-info">
+            <span class="label">Arquivo:</span>
+            <span id="caminho-exibido">Nenhum arquivo selecionado</span>
+        </div>
+        <button id="btn-selecionar" class="btn-secondary">Selecionar Arquivo</button>
+    </div>
+
+    <h1>Claude Dashboard</h1>
+    
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3>Total de Interações</h3>
+            <p id="total-interacoes">0</p>
+        </div>
+        
+        <div class="card">
+            <h3>Sessões Únicas</h3>
+            <p id="total-sessoes">0</p>
+        </div>
+        
+        <div class="card">
+            <h3>Repositórios Abertos</h3>
+            <p id="repositorios-abertos">0</p>
+        </div>
+    </div>
+
+    <button id="btn-atualizar">Atualizar Dados</button>
+</div>
+
+<script src="/src/main.ts" type="module"></script>
 </body>
 </html>

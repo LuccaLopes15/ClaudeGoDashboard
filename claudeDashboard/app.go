@@ -5,6 +5,8 @@ import (
 	"claudeDashboard/parser"
 	"context"
 	"fmt"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // App struct
@@ -28,8 +30,23 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-// GetClaudeStats é a função que o TypeScript vai chamar!
 func (a *App) GetClaudeStats(path string) models.DashboardData {
 	data, _ := parser.ProcessarHistorico(path)
 	return data
+}
+
+func (a *App) SelecionarArquivo() string {
+	caminho, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
+		Title: "Selecione o histórico do Claude (history.jsonl)",
+		Filters: []runtime.FileFilter{
+			{DisplayName: "Arquivos JSONL (*.jsonl)", Pattern: "*.jsonl"},
+			{DisplayName: "Todos os arquivos (*.*)", Pattern: "*.*"},
+		},
+	})
+
+	if err != nil {
+		return ""
+	}
+
+	return caminho
 }

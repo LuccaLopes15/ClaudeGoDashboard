@@ -5,3 +5,5 @@ import {models} from '../models';
 export function GetClaudeStats(arg1:string):Promise<models.DashboardData>;
 
 export function Greet(arg1:string):Promise<string>;
+
+export function SelecionarArquivo():Promise<string>;
