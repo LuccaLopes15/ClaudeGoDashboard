@@ -136,3 +136,37 @@ h1 {
     background-color: var(--accent-color);
     color: white;
 }
+
+.repos-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.repo-item {
+    margin-bottom: 15px;
+}
+
+.repo-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.progress-bar-bg {
+    background: #373a40;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: var(--accent-color);
+    height: 100%;
+    width: 0%; /* O TS vai calcular isso */
+    transition: width 1s ease-in-out;
+}

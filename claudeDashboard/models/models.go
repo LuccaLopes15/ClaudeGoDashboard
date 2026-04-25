@@ -8,10 +8,16 @@ type LogEntry struct {
 	SessionID string `json:"sessionId"`
 }
 
+type RepoRankingItem struct {
+	Nome string `json:"nome"`
+	Qtd  int    `json:"qtd"`
+}
+
 // DashboardData é o que enviaremos para o MAUI
 type DashboardData struct {
-	TotalSessoes    int            `json:"total_sessoes"`
-	TotalInteracoes int            `json:"total_interacoes"`
-	ProjetosAtivos  int            `json:"projetos_ativos"`
-	UsoPorProjeto   map[string]int `json:"uso_por_projeto"`
+	TotalSessoes    int               `json:"total_sessoes"`
+	TotalInteracoes int               `json:"total_interacoes"`
+	ProjetosAtivos  int               `json:"projetos_ativos"`
+	UsoPorProjeto   map[string]int    `json:"uso_por_projeto"`
+	TopRepositorios []RepoRankingItem `json:"top_repositorios"`
 }
