@@ -80,6 +80,7 @@ h1 {
     border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.2s;
+    margin-bottom: 40px;
 }
 
 #btn-atualizar:hover {
@@ -169,4 +170,26 @@ h1 {
     height: 100%;
     width: 0%; /* O TS vai calcular isso */
     transition: width 1s ease-in-out;
+}
+
+.charts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Um ao lado do outro */
+    gap: 20px;
+
+    height: 350px; 
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    min-height: 300px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
 }

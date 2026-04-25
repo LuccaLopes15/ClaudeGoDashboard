@@ -17,6 +17,12 @@
 
     <h1>Claude Dashboard</h1>
     
+    <p id="periodo-exibido" style="text-align: center; color: #a1a1a1; margin-top: -15px; margin-bottom: 30px;">
+        Carregando período...
+    </p>
+
+    <button id="btn-atualizar">Atualizar Dados</button>
+
     <div class="dashboard-grid">
         <div class="card">
             <h3>Total de Interações</h3>
@@ -34,13 +40,31 @@
         </div>
     </div>
 
+
     <div class="repos-section">
         <h2>Top 5 Repositórios</h2>
         <div id="repos-container">
             </div>
     </div>
 
-    <button id="btn-atualizar">Atualizar Dados</button>
+    <div class="charts-section">
+        <div class="chart-container">
+            <h3>Heatmap por hora</h3>
+            <canvas id="chartHoras"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Heatmap por dia da semana</h3>
+        <canvas id="chartSemana"></canvas>
+        </div>
+    </div>
+
+    <div class="charts-section">
+        <div class="chart-container">
+            <h3>Progressão Mensal</h3>
+            <canvas id="chartMensal"></canvas>
+        </div>
+    </div>
 </div>
 
 <script src="/src/main.ts" type="module"></script>

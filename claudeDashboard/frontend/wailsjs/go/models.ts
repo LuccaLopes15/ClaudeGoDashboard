@@ -20,6 +20,11 @@ export namespace models {
 	    projetos_ativos: number;
 	    uso_por_projeto: Record<string, number>;
 	    top_repositorios: RepoRankingItem[];
+	    uso_por_hora: Record<number, number>;
+	    uso_por_dia_semana: Record<string, number>;
+	    uso_mensal: Record<string, number>;
+	    periodo_inicio: string;
+	    periodo_fim: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new DashboardData(source);
@@ -32,6 +37,11 @@ export namespace models {
 	        this.projetos_ativos = source["projetos_ativos"];
 	        this.uso_por_projeto = source["uso_por_projeto"];
 	        this.top_repositorios = this.convertValues(source["top_repositorios"], RepoRankingItem);
+	        this.uso_por_hora = source["uso_por_hora"];
+	        this.uso_por_dia_semana = source["uso_por_dia_semana"];
+	        this.uso_mensal = source["uso_mensal"];
+	        this.periodo_inicio = source["periodo_inicio"];
+	        this.periodo_fim = source["periodo_fim"];
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {

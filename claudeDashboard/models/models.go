@@ -20,4 +20,9 @@ type DashboardData struct {
 	ProjetosAtivos  int               `json:"projetos_ativos"`
 	UsoPorProjeto   map[string]int    `json:"uso_por_projeto"`
 	TopRepositorios []RepoRankingItem `json:"top_repositorios"`
+	UsoPorHora      map[int]int       `json:"uso_por_hora"`       // Ex: {9: 50, 10: 120...}
+	UsoPorDiaSemana map[string]int    `json:"uso_por_dia_semana"` // Ex: {"Segunda": 300...}
+	UsoMensal       map[string]int    `json:"uso_mensal"`         // Ex: {"Jan": 1500...}
+	PeriodoInicio   string            `json:"periodo_inicio"`
+	PeriodoFim      string            `json:"periodo_fim"`
 }

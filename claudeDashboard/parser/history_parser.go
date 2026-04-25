@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"os"
 	"sort"
+	"time"
 )
 
 func ProcessarHistorico(caminho string) (historicoProcessado models.DashboardData, mensagemErro string) {
@@ -24,6 +25,14 @@ func ProcessarHistorico(caminho string) (historicoProcessado models.DashboardDat
 	stats.UsoPorProjeto = make(map[string]int)
 	sessoesUnicas := make(map[string]bool)
 
+	stats.UsoPorHora = make(map[int]int)
+	stats.UsoPorDiaSemana = make(map[string]int)
+	stats.UsoMensal = make(map[string]int)
+
+	diasSemana := []string{"Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"}
+
+	var primeiroTS, ultimoTS int64
+
 	scanner := bufio.NewScanner(arquivo)
 	for scanner.Scan() {
 		var entrada models.LogEntry
@@ -31,6 +40,24 @@ func ProcessarHistorico(caminho string) (historicoProcessado models.DashboardDat
 		if err := json.Unmarshal(scanner.Bytes(), &entrada); err != nil {
 			continue // Pula linhas malformadas
 		}
+
+		if primeiroTS == 0 || entrada.Timestamp < primeiroTS {
+			primeiroTS = entrada.Timestamp
+		}
+
+		if entrada.Timestamp > ultimoTS {
+			ultimoTS = entrada.Timestamp
+		}
+
+		t := time.Unix(entrada.Timestamp/1000, 0)
+
+		stats.UsoPorHora[t.Hour()]++
+
+		nomeDia := diasSemana[t.Weekday()]
+		stats.UsoPorDiaSemana[nomeDia]++
+
+		mesChave := t.Format("2006-01")
+		stats.UsoMensal[mesChave]++
 
 		stats.TotalInteracoes++
 		sessoesUnicas[entrada.SessionID] = true
@@ -40,6 +67,9 @@ func ProcessarHistorico(caminho string) (historicoProcessado models.DashboardDat
 			nomeRepo = "Chat Direto (Sem Projeto)"
 		}
 		stats.UsoPorProjeto[nomeRepo]++
+
+		stats.PeriodoInicio = time.Unix(primeiroTS/1000, 0).Format("02/01/2006")
+		stats.PeriodoFim = time.Unix(ultimoTS/1000, 0).Format("02/01/2006")
 	}
 
 	// Verifique erros do scanner após o loop
